@@ -1,28 +1,32 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-custom navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">QUẢN LÝ HỌC SINH</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <div>
                 <ul class="menu">
-                    <li class="sub"><a href="/">Trang Chủ</a></li>
+                    <li><a class="sub" href="#" style="color: #bf2642;"><h1>QUẢN LÝ HỌC SINH</h1></a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="menu">
+                    <li class="sub"><a href="/" style="color: #bf2642;"><h4>Trang Chủ</h4></a></li>
                 </ul>
             </div>
             {% if current_user.is_authenticated %}
             {% if current_user.user_role == UserRole.NV %}
             <div>
                 <ul class="menu">
-                    <li class="sub"><a href="#">Học Sinh</a>
+                    <li class="sub"><a href="#" style="color: #bf2642;"><h4>Học Sinh</h4></a>
                         <ul class="menu subcontent">
                             <li></li>
-                            <li><a href="/tiep_nhan_hs">Tiếp nhận học sinh</a></li>
-                            <li><a href="/hocsinh">Danh sách học sinh</a></li>
-                            <li><a href="/danhsachlop">Danh sách lớp</a></li>
-                            <li><a href="/lop">Tạo lớp</a></li>
-                            <li><a href="/sualop">Sửa lớp cho HS</a></li>
-                            <li><a href="/khoi">Tạo số lớp trong khối</a></li>
+                            <li><a href="/tiep_nhan_hs" style="color: #bf2642;"><h4>Tiếp nhận học sinh</h4></a></li>
+                            <li><a href="/hocsinh" style="color: #bf2642;"><h4>Danh sách học sinh</h4></a></li>
+                            <li><a href="/danhsachlop" style="color: #bf2642;"><h4>Danh sách lớp</h4></a></li>
+                            <li><a href="/lop" style="color: #bf2642;"><h4>Tạo lớp</h4></a></li>
+                            <li><a href="/sualop" style="color: #bf2642;"><h4>Sửa lớp cho HS</h4></a></li>
+                            <li><a href="/khoi" style="color: #bf2642;"><h4>Tạo số lớp trong khối</h4></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -31,12 +35,11 @@
             {% if current_user.user_role == UserRole.GV %}
             <div>
                 <ul class="menu">
-                    <li class="sub"><a href="#">Điểm</a>
+                    <li class="sub"><a href="#" style="color: #bf2642;"><h4>Điểm</h4></a>
                         <ul class="menu subcontent">
                             <li></li>
-                            <li><a href="/nhapdiem">Nhập điểm</a></li>
-<!--                            <li><a href="/bangdiem_mon">Bảng Điểm Môn Học</a></li>-->
-                            <li><a href="/bangdiem_nam">Bảng Điểm Năm Học</a></li>
+                            <li><a href="/nhapdiem" style="color: #bf2642;"><h4>Nhập điểm</h4></a></li>
+                            <li><a href="/bangdiem_nam" style="color: #bf2642;"><h4>Xuất Điểm</h4></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -45,14 +48,14 @@
             {% if current_user.user_role == UserRole.ADMIN %}
             <div>
                 <ul class="menu">
-                    <li class="sub"><a href="/admin">Quản Trị</a></li>
+                    <li class="sub"><a href="/admin" style="color: #bf2642;"><h4>Quản Trị</h4></a></li>
                 </ul>
             </div>
             {% endif %}
             {% endif %}
             {% if current_user.is_authenticated %}
             <div>
-                <ul class="menu">
+                <ul class="menu" style="font-size: 18px">
                     <li>
                         <a class="nav-link text-danger" href="/">
                             {% if current_user.avatar %}
@@ -67,26 +70,26 @@
             </div>
             <div>
                 <ul class="menu">
-                    <li><a class="nav-link text-success" href="/signout">Đăng Xuất</a></li>
+                    <li><a class="nav-link" href="/signout" style="color: #C71585;"><h4>Đăng Xuất</h4></a></li>
                 </ul>
             </div>
             {% else %}
             <div>
                 <ul class="menu">
-                    <li><a class="nav-link text-danger" href="/register">Đăng Ký</a></li>
+                    <li><a class="nav-link" href="/register" style="color: #C71585;"><h4>Đăng Ký</h4></a></li>
                 </ul>
             </div>
             <div>
                 <ul class="menu">
-                    <li><a class="nav-link text-success" href="/signin">Đăng Nhập</a></li>
+                    <li><a class="nav-link" href="/signin" style="color: #C71585;"><h4>Đăng Nhập</h4></a></li>
                 </ul>
             </div>
             {% endif %}
         </div>
-        <div>
+        <div style="width: 20%">
             <form class="d-flex" method="get" action="/">
-                <input class="form-control me-2" type="text" name='kw' placeholder="Nhập từ khóa...">
-                <button class="btn btn-primary" type="submit">Tìm</button>
+                <input class="form-control me-2" type="text" name='kw' placeholder="Nhập từ khóa..." style="font-size: 18px">
+                <button class="btn btn-custom" type="submit" style="width: 40%; font-size: 18px">Tìm</button>
             </form>
         </div>
     </div>

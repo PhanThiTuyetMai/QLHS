@@ -1,7 +1,55 @@
 {% extends 'admin/master.html' %}
 {% block body %}
-{% if current_user.is_authenticated %}
-<h1 class="text-center text-info">CHÀO MỪNG ĐẾN TRANG QUẢN TRỊ!</h1>
-<h2 class="text-info" align="center">Chào {{ current_user.name }}!</h2>
-{% endif %}
+    {% if current_user.is_authenticated %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <div class="jumbotron animate__animated animate__fadeIn">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.Z6M8cqOUbmh5BcHpv4QgGAHaGL&pid=Api&P=0&h=180" alt="Admin Image"
+                 class="img-fluid rounded-circle mx-auto d-block">
+            <h1 class="text-center text-info">CHÀO MỪNG ĐẾN TRANG QUẢN TRỊ!</h1>
+            <h2 class="text-info" align="center">Chào {{ current_user.name }}!</h2>
+
+            <hr class="my-4">
+            <p class="text-center animate__animated animate__fadeInUp">Dưới đây là một số tùy chọn bạn có thể thực
+                hiện:</p>
+        </div>
+
+        <div class="row mt-5">
+<!--            thành sừa quy định nha em-->
+            <div class="col-md-4">
+                <div class="card animate__animated animate__fadeInLeft">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Quản lý quy định</h3>
+                        <p class="card-text text-center">Xem và quản lý quy định</p>
+                        <a href="/suadk" class="btn btn-primary btn-block">Quản lý quy định</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card animate__animated animate__fadeInUp">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Thống Kê</h3>
+                        <p class="card-text text-center">Xem thống kê và báo cáo quan trọng.</p>
+                        <a href="/tongket" class="btn btn-primary btn-block">Xem thống kê</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card animate__animated animate__fadeInRight">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Môn học</h3>
+                        <p class="card-text text-center">Xem và tùy chỉnh môn học.</p>
+                        <a href="/monhoc" class="btn btn-primary btn-block">Môn học</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="lead animate__animated animate__fadeInUp">Hãy tận hưởng trải nghiệm quản trị tuyệt vời của
+                bạn!</p>
+        </div>
+        </div>
+    {% endif %}
 {% endblock %}

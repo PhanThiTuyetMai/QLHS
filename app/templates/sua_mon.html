@@ -11,7 +11,7 @@
     <div class="alert alert-info" align="center">
         <strong>{{ err_msg }}</strong>
         <input type="text" size="5px" class="an1">
-        <a href="/suamonhoc" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+        <a href="/suamonhoc" class="btn btn-xs btn-primary pull-right" style="font-size: 17px">Đã hiểu !</a>
     </div>
 </div>
 {% endif %}
@@ -26,7 +26,7 @@
             {% endfor %}
         </select>
         <input type="text" size="2px" class="an1">
-        <button type="submit">Chọn</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Chọn</button>
     </div>
     <br><br>
     <div>
@@ -43,13 +43,14 @@
                 <td><input value="{{ found_mh.soluongdiem45p }}" class="inputnhap" name="45p_cn" size="5px"></td>
             </tr>
         </table>
-        <br>
+        <br><br>
         <div align="center">
-            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <button type="submit" class="btn btn-custom" style="font-size: 18px">Cập Nhật</button>
             <input type="text" size="8px" class="an1">
-            <button class="btn btn-primary"><a href="/monhoc" style="color: white">Thoát</a></button>
+            <button class="btn btn-custom" style="font-size: 18px"><a href="/monhoc" style="color: white">Thoát</a></button>
         </div>
         {% endif %}
+        <br><br>
     </div>
 </form>
 {% endblock %}

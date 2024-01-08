@@ -16,9 +16,9 @@
             {% endfor %}
         </select>
         <input type="text" size="2px" class="an1">
-        <button type="submit">Chọn</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Chọn</button>
     </div>
-    <br><br>
+    <br><br><br>
     <div>
         {% if found_mh %}
         <table border="1" align="center" width="700px;">
@@ -33,12 +33,13 @@
                 <td>{{ found_mh.soluongdiem45p }}</td>
             </tr>
         </table>
-        <br>
+        <br><br>
         <div align="center">
-            <button class="btn btn-primary"><a href="/timkiemmon" style="color: white">Tìm tiếp</a></button>
+            <button class="btn btn-custom" style="font-size: 18px"><a href="/timkiemmon" style="color: white">Tìm tiếp</a></button>
             <input size="8px" class="an1">
-            <button class="btn btn-primary"><a href="/monhoc" style="color: white">Thoát</a></button>
+            <button class="btn btn-custom" style="font-size: 18px"><a href="/monhoc" style="color: white">Thoát</a></button>
         </div>
+        <br><br>
         {% endif %}
     </div>
 </form>

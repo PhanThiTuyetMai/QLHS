@@ -11,34 +11,34 @@
     <div class="alert alert-info" align="center">
         <strong>{{ err_msg }}</strong>
         <input type="text" size="5px" class="an1">
-        <a href="/tiep_nhan_hs" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+        <a href="/tiep_nhan_hs" class="btn btn-xs btn-primary pull-right" style="font-size: 17px">Đã hiểu !</a>
     </div>
 </div>
 {% endif %}
 <form method="post" action="/tiep_nhan_hs" xmlns="http://www.w3.org/1999/html">
     <div class="mb-3 mt-3">
         <label for="username" class="form-label">Họ và tên: </label>
-        <input type="text" class="form-control" id="username" name="hoten" placeholder="Tên học sinh...">
+        <input type="text" class="form-control" id="username" name="hoten" placeholder="Tên học sinh..." style="font-size: 17px">
     </div>
     <div class="mb-3">
         <label for="gt" class="form-label">Giới tính:</label>
-        <input type="text" class="form-control" id="gt" name="gioitinh" placeholder="Nhập giới tính...">
+        <input type="text" class="form-control" id="gt" name="gioitinh" placeholder="Nhập giới tính..." style="font-size: 17px">
     </div>
     <div class="mb-3">
         <label for="dc" class="form-label">Địa chỉ:</label>
-        <input type="text" class="form-control" id="dc" name="diachi" placeholder="Nhập giới tính...">
+        <input type="text" class="form-control" id="dc" name="diachi" placeholder="Nhập giới tính..." style="font-size: 17px">
     </div>
     <div class="mb-3">
         <label for="ns" class="form-label">Ngày sinh:</label>
-        <input type="text" class="form-control" id="ns" name="ngaysinh" placeholder="Nhập ngày sinh...">
+        <input type="text" class="form-control" id="ns" name="ngaysinh" placeholder="Nhập ngày sinh..." style="font-size: 17px">
     </div>
     <div class="mb-3">
         <label for="sdt" class="form-label">Số điện thoại:</label>
-        <input type="text" class="form-control" id="sdt" name="sdt" placeholder="Nhập số điện thoại...">
+        <input type="text" class="form-control" id="sdt" name="sdt" placeholder="Nhập số điện thoại..." style="font-size: 17px">
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Nhập email:</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email...">
+        <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email..." style="font-size: 17px">
     </div>
     <div>
         <br>
@@ -122,9 +122,9 @@
     </div>
     <br>
     <div align="center">
-        <button type="submit" class="btn btn-primary">Lưu</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Lưu</button>
         <input type="text" size="8px" class="an1">
-        <button class="btn btn-primary"><a href="/" style="color: white">Thoát</a></button>
+        <button class="btn btn-custom"><a href="/" style="color: white; font-size: 18px">Thoát</a></button>
     </div>
 </form>
 {% endblock %}

@@ -18,7 +18,7 @@
             </select>
         </div>
         <input class="an1" type="text" size="8px">
-        <button type="submit">Chọn</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Chọn</button>
         <input class="an1" type="text" size="8px">
         <div>
             <label>Chọn năm học:</label>
@@ -30,7 +30,7 @@
             </select>
         </div>
         <input value="" readonly size="10px" class="an1">
-        <button type="submit">Tìm</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Tìm</button>
     </div>
     <div>
         <table class="an">
@@ -61,12 +61,13 @@
             </tr>
             {% endfor %}
         </table>
+        <br><br>
         <div align="center">
-            <br>
-            <button type="submit" class="btn btn-primary"><a href="/bangdiem_nam" style="color: white">Tra Tiếp</a></button>
+            <button type="submit" class="btn btn-custom" style="font-size: 18px"><a href="/bangdiem_nam" style="color: white; font-size: 18px">Tra tiếp</a></button>
             <input type="text" size="8px" class="an1">
-            <button class="btn btn-primary"><a href="/" style="color: white">Thoát</a></button>
+            <button class="btn btn-custom"><a href="/" style="color: white; font-size: 18px">Thoát</a></button>
         </div>
     </div>
+    <br>
 </form>
 {% endblock %}

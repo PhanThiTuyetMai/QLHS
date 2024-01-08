@@ -11,22 +11,22 @@
     <div class="alert alert-info" align="center">
         <strong>{{ err_msg }}</strong>
         <input type="text" size="5px" class="an1">
-        <a href="/signin" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+        <a href="/signin" class="btn btn-xs btn-primary pull-right" style="font-size: 17px">Đã hiểu !</a>
     </div>
 </div>
 {% endif %}
 <form method="post" action="/signin">
     <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+        <input type="text" class="form-control" id="username" name="username" required style="font-size: 17px">
     </div>
     <div class="form-group">
         <label for="password">Mật khẩu</label>
-        <input type="password" class="form-control" id="password" name="password">
+        <input type="password" class="form-control" id="password" name="password" style="font-size: 17px">
     </div>
     <br>
     <div align="center">
-        <button type="submit" class="btn btn-danger">Đăng Nhập</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Đăng Nhập</button>
     </div>
 </form>
 <br><br>

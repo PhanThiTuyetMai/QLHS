@@ -11,7 +11,7 @@
     <div class="alert alert-info" align="center">
         <strong>{{ err_msg }}</strong>
         <input type="text" size="5px" class="an1">
-        <a href="/nhapdiem" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+        <a href="/nhapdiem" class="btn btn-xs btn-primary pull-right" style="font-size: 17px">Đã hiểu !</a>
     </div>
 </div>
 {% endif %}
@@ -27,7 +27,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div>
+        <div class="an">
             {% for p in lops %}
             <input value="{{ p.malop }}" name="ml1" readonly>
             {% endfor %}
@@ -42,7 +42,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div>
+        <div class="an">
             {% for p in manghk %}
             <input value="{{ p }}" name="hk" readonly>
             {% endfor %}
@@ -53,8 +53,8 @@
             <label>Chọn năm học: </label>
             <select name="namhoc">
                 <option value="">Năm Học</option>
-                {% for c in hk %}
-                <option>{{ c.namhoc }}</option>
+                {% for c in mangnam %}
+                <option>{{ c }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -67,19 +67,18 @@
                 {% endfor %}
             </select>
         </div>
-        <div>
+        <div class="an">
             {% for c in mamon %}
             <input type="text" value="{{ c.mamh }}" name="ma_m" readonly>
             {% endfor %}
         </div>
     </div>
-    <br><br>
     <div align="center">
-        <button type="submit">Xác Nhận</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Xác Nhận</button>
     </div>
     <br><br>
     <div>
-        <table border="1" align="center" width="700px;">
+        <table border="1" align="center" width="100%">
             <tr>
                 <th colspan="11" class="tieudetable">BẢNG ĐIỂM CHI TIẾT</th>
             </tr>
@@ -91,25 +90,27 @@
                 <th>Điểm thi</th>
             </tr>
             {% for c in students %}
-            <tr>
-                <th><input name="ma_{{ c.mahs }}" type="text" value="{{ c.mahs }}" size="5" readonly></th>
-                <th><input value="{{ c.hoten }}" type="text" size="10" readonly></th>
-                <th><input name="15_1_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="15_2_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="15_3_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="15_4_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="15_5_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="45_1_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="45_2_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="45_3_{{ c.mahs }}" type="text" size="5"></th>
-                <th><input name="thi_{{ c.mahs }}" type="text" size="5"></th>
+            <tr align="center">
+                <td><input name="ma_{{ c.mahs }}" type="text" value="{{ c.mahs }}" size="5" readonly></td>
+                <td><input value="{{ c.hoten }}" type="text" size="20" readonly></td>
+                <td><input name="15_1_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="15_2_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="15_3_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="15_4_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="15_5_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="45_1_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="45_2_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="45_3_{{ c.mahs }}" type="text" size="5"></td>
+                <td><input name="thi_{{ c.mahs }}" type="text" size="5"></td>
             </tr>
             {% endfor %}
         </table>
     </div>
     <br><br>
     <div align="center">
-        <button type="submit">Lưu</button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Lưu</button>
+        <input type="text" size="8px" class="an1">
+        <button class="btn btn-custom"><a href="/" style="color: white; font-size: 18px">Thoát</a></button>
     </div>
     <br><br>
 </form>

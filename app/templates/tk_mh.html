@@ -29,7 +29,7 @@
         </div>
         <input size="8px" class="an1">
         <div>
-            <button type="submit">Chọn</button>
+            <button type="submit" class="btn btn-custom" style="font-size: 18px">Chọn</button>
         </div>
     </div>
     <br><br>
@@ -45,7 +45,7 @@
         </div>
         <input size="8px" class="an1">
         <div>
-            <button type="submit">Xác nhận</button>
+            <button type="submit" class="btn btn-custom" style="font-size: 18px">Xác nhận</button>
         </div>
     </div>
     <br>
@@ -57,10 +57,10 @@
             {% endfor %}
             <div align="center">
                 {% for c in tenhk %}
-                <h2 style="background-color: green" align="center">BẢNG TỔNG KẾT HỌC KỲ <input class="inputtieude" align="center" value="{{ c }}" readonly size="1"></h2>
+                <h2 style="Color: white; background-color: green" align="center">BẢNG TỔNG KẾT HỌC KỲ <input class="inputtieude" align="center" value="{{ c }}" readonly size="1.1" style="Color: white; background-color: green;"></h2>
                 {% endfor %}
                 {% for c in tennh %}
-                <h2 style="background-color: green" align="center">NĂM HỌC<input class="inputtieude" align="center" value="{{ c }}" readonly size="10"></h2>
+                <h2 style="Color: white; background-color: green" align="center">NĂM HỌC<input class="inputtieude" align="center" value="{{ c }}" readonly size="7" style="Color: white; text-align: center; background-color: green;"></h2>
                 {% endfor %}
             </div>
         </div>
@@ -92,9 +92,9 @@
     </div>
     <br>
     <div align="center">
-        <button type="submit" class="btn btn-primary"><a href="/tongket" style="color: white">Tra tiếp</a></button>
+        <button type="submit" class="btn btn-custom" style="font-size: 18px"><a href="/tongket" style="color: white">Tra tiếp</a></button>
         <input class="an1" type="text" size="8">
-        <button class="btn btn-primary"><a href="/admin" style="color: white">Xong</a></button>
+        <button class="btn btn-custom" style="font-size: 18px"><a href="/admin" style="color: white">Xong</a></button>
     </div>
 </form>
 {% endfor %}

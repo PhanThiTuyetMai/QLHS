@@ -4,14 +4,14 @@
 
 {% block content %}
 <br>
-<h1>LẬP SỐ LỚP TRONG KHỐI</h1>
+<h1 align="center">LẬP SỐ LỚP TRONG KHỐI</h1>
 <br>
 {% if err_msg %}
 <div class="container">
     <div class="alert alert-info" align="center">
         <strong>{{ err_msg }}</strong>
         <input type="text" size="5px" class="an1">
-        <a href="/khoi" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+        <a href="/khoi" class="btn btn-xs btn-primary pull-right" style="font-size: 17px">Đã hiểu !</a>
     </div>
 </div>
 {% endif %}
@@ -25,11 +25,15 @@
             <option value="12">12</option>
         </select>
     </div>
-    <br>
+    <br><br>
     <div class="mb-3">
         <label for="sl" class="form-label">Số Lớp:</label>
-        <input type="text" class="form-control" id="sl" name="solop" placeholder="Nhập số lớp...">
+        <input type="text" class="form-control" id="sl" name="solop" placeholder="Nhập số lớp..." style="font-size: 17px">
     </div>
-    <button type="submit" class="btn btn-primary">Lưu</button>
+    <br><br>
+    <div align="center">
+        <button type="submit" class="btn btn-custom" style="font-size: 18px">Lưu</button>
+    </div>
+    <br><br>
 </form>
 {% endblock %}

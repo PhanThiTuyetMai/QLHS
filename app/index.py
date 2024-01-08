@@ -139,14 +139,18 @@ def dslop():
 def nhapdiem():
     err_msg = ''
     manghk = []
+    mangnam = []
     hk1 = []
     global mn, mahs, ml, ky1
     lop = dao.load_lop()
 
     hk = dao.load_hk()
     for c in hk:
+        mangnam.append(c.namhoc)
         if int(c.mahk) <= 2:
             hk1.append(c.mahk)
+
+    mangnam = set(mangnam)
 
     dsmonh = dao.load_mh()
     kw = request.form.get('tenlop')
@@ -235,7 +239,7 @@ def nhapdiem():
 
     return render_template('Nhap_diem.html', lop=lop, hk=hk, dsmonh=dsmonh,
                            UserRole=UserRole, err_msg=err_msg, lops=lops, manghk=manghk,
-                           mamon=mamon, students=students, hk1=hk1)
+                           mamon=mamon, students=students, hk1=hk1, mangnam=mangnam)
 
 
 @app.route('/taomonhoc', methods=['get', 'post'])
