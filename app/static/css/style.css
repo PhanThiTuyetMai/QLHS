@@ -1,0 +1,88 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 2.5px solid black;
+    border-collapse: collapse;
+}
+
+.tieudetable {
+    text-align: center;
+    text-transform: uppercase
+}
+
+th, td {
+    padding: 5px
+    text-align: center;
+}
+
+.an{
+    display: none;
+}
+
+.an1{
+    visibility: hidden;
+}
+
+ul.menu{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul.menu>li>a{
+    display: block;
+    padding: 15px 11px;
+}
+ul.menu>li>a:hover{
+    background-color: blue;
+    color: red;
+}
+.subcontent{
+    display: none !important; /* ẩn đi các thành phần */
+    position: absolute; /* không chiếm lấy không gian của không gian cha của nó  */
+    background-color: aqua;
+    z-index: 1; /* cho phép hiện đè lên các thành phần khác */
+}
+
+.sub:hover .subcontent{
+    display: block !important;
+}
+
+.flex{
+    display: flex;
+}
+
+.canhdeu{
+    height: 50px;
+    background-image: linear-gradient( to top, black, purple);
+}
+
+.inputtieude {
+  /*Ẩn boder trên, phải và trái*/
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+ /*Thiết lập kiểu cho border dưới*/
+        border-bottom-style: groove;
+        background-color: Green;
+        color:red;
+        padding: 15px;
+   }
+input::placeholder{
+   color:white;
+}
+
+.inputnhap{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    text-align = center;
+}

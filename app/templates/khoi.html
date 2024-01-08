@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}LẬP DANH SÁCH KHỐI{% endblock %}
+
+{% block content %}
+<br>
+<h1>LẬP SỐ LỚP TRONG KHỐI</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/khoi" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<br>
+<form method="post" action="/khoi">
+    <div class="from-group">
+        <label>Khối</label>
+        <select name="tenkhoi">
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+    </div>
+    <br>
+    <div class="mb-3">
+        <label for="sl" class="form-label">Số Lớp:</label>
+        <input type="text" class="form-control" id="sl" name="solop" placeholder="Nhập số lớp...">
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+</form>
+{% endblock %}

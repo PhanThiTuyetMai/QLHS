@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TẠO LỚP{% endblock %}
+
+{% block content %}
+<br>
+<h1>TẠO LỚP</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/lop" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<form method="post" action="/lop">
+    <br>
+     <div class="from-group">
+        <label>Chọn Khối</label>
+        <select name="c_khoi">
+            <option>Khối</option>
+            {% for c in khoi %}
+            <option value="{{ c.tenkhoi }}">{{ c.tenkhoi }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="class" class="form-label">Tên lớp</label>
+        <input type="text" class="form-control" id="class" name="lop" placeholder="Nhập tên lớp...">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="siso" class="form-label">Sĩ số:</label>
+        <input type="text" class="form-control" id="siso" name="siso" placeholder="Nhập sĩ số...">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}DANH SÁCH HỌC SINH{% endblock %}
+
+{% block content %}
+<br>
+<div class="container">
+    <ul class="pagination mt-1">
+        {% for i in range(pages) %}
+        <li class="page-item"><a class="page-link" href="/hocsinh?page={{ i + 1 }}">{{ i + 1 }}</a></li>
+        {% endfor %}
+    </ul>
+    <table width="100%">
+        <tr>
+            <th colspan="8" class="tieudetable">DANH SÁCH HỌC SINH</th>
+        </tr>
+        <tr align="center">
+            <th>STT</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Lớp</th>
+        </tr>
+        {% for s in students %}
+        <tr align="center">
+            <td>{{ s.mahs }}</td>
+            <td>{{ s.hoten }}</td>
+            <td>{{ s.gioitinh }}</td>
+            <td>{{ s.ngaysinh }}</td>
+            <td>{{ s.diachi }}</td>
+            <td>{{ s.email }}</td>
+            <td>{{ s.sdt }}</td>
+            {% for d in lop %}
+            {% if  d.malop==s.malop  %}
+                <td>{{ d.tenlop }}</td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

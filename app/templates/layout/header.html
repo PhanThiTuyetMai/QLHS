@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">QUẢN LÝ HỌC SINH</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <div>
+                <ul class="menu">
+                    <li class="sub"><a href="/">Trang Chủ</a></li>
+                </ul>
+            </div>
+            {% if current_user.is_authenticated %}
+            {% if current_user.user_role == UserRole.NV %}
+            <div>
+                <ul class="menu">
+                    <li class="sub"><a href="#">Học Sinh</a>
+                        <ul class="menu subcontent">
+                            <li></li>
+                            <li><a href="/tiep_nhan_hs">Tiếp nhận học sinh</a></li>
+                            <li><a href="/hocsinh">Danh sách học sinh</a></li>
+                            <li><a href="/danhsachlop">Danh sách lớp</a></li>
+                            <li><a href="/lop">Tạo lớp</a></li>
+                            <li><a href="/sualop">Sửa lớp cho HS</a></li>
+                            <li><a href="/khoi">Tạo số lớp trong khối</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+            {% if current_user.user_role == UserRole.GV %}
+            <div>
+                <ul class="menu">
+                    <li class="sub"><a href="#">Điểm</a>
+                        <ul class="menu subcontent">
+                            <li></li>
+                            <li><a href="/nhapdiem">Nhập điểm</a></li>
+<!--                            <li><a href="/bangdiem_mon">Bảng Điểm Môn Học</a></li>-->
+                            <li><a href="/bangdiem_nam">Bảng Điểm Năm Học</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+            {% if current_user.user_role == UserRole.ADMIN %}
+            <div>
+                <ul class="menu">
+                    <li class="sub"><a href="/admin">Quản Trị</a></li>
+                </ul>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <div>
+                <ul class="menu">
+                    <li>
+                        <a class="nav-link text-danger" href="/">
+                            {% if current_user.avatar %}
+                                <img src="{{ current_user.avatar }}" width="30" alt="{{ current_user.name }}" class="rounded-circle">
+                            {% else %}
+                                <img src="https://www.m5s.vn/upload/images/anh-meo-cute-hoat-hinh.jpg" width="30" alt="{{ current_user.name }}" class="rounded-circle">
+                            {% endif %}
+                            {{ current_user.username }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="menu">
+                    <li><a class="nav-link text-success" href="/signout">Đăng Xuất</a></li>
+                </ul>
+            </div>
+            {% else %}
+            <div>
+                <ul class="menu">
+                    <li><a class="nav-link text-danger" href="/register">Đăng Ký</a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="menu">
+                    <li><a class="nav-link text-success" href="/signin">Đăng Nhập</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <div>
+            <form class="d-flex" method="get" action="/">
+                <input class="form-control me-2" type="text" name='kw' placeholder="Nhập từ khóa...">
+                <button class="btn btn-primary" type="submit">Tìm</button>
+            </form>
+        </div>
+    </div>
+</nav>

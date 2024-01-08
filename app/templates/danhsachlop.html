@@ -1,0 +1,70 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}DANH SÁCH HỌC SINH{% endblock %}
+
+{% block content %}
+<br>
+<form method="post" action="/danhsachlop">
+    <div class="from-group container">
+        <br>
+        <label for="lang-select">Chọn Lớp: </label>
+        <select name="kw" id="lang-select">
+            <option value="">Bạn muốn chọn lớp nào</option>
+            {% for c in lop %}
+            <option value="{{ c.tenlop }}">{{ c.tenlop }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Tìm</button>
+        <div class="an">
+            {% for p in lops %}
+            <input value="{{ p.malop }}" name="lop" readonly>
+            {% endfor %}
+        </div>
+        <br><br>
+        <div>
+            {% for c in lops %}
+            <h1 align="center">DANH SÁCH LỚP {{c.tenlop}}</h1>
+            {% endfor %}
+        </div>
+        <div>
+            <label>Sĩ số: </label>
+            <script>
+                var i=0;
+                {% for c in students %}
+                    i++;
+                {% endfor %}
+                document.write(i)
+            </script>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <table width="100%">
+            <tr>
+                <th colspan="8" class="tieudetable">DANH SÁCH HỌC SINH</th>
+            </tr>
+            <tr align="center">
+                <th>Mã hs</th>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+            </tr>
+            {% for s in students %}
+            <tr align="center">
+                <td>{{ s.mahs }}</td>
+                <td>{{ s.hoten }}</td>
+                <td>{{ s.ngaysinh }}</td>
+                <td>{{ s.gioitinh }}</td>
+                <td>{{ s.diachi }}</td>
+                <td>{{ s.email }}</td>
+                <td>{{ s.sdt }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+</form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}BẢNG ĐIỂM MÔN HỌC{% endblock %}
+
+{% block content %}
+<form method="post" action="/bangdiem_nam">
+    <br>
+    <h1 align="center">BẢNG ĐIỂM MÔN HỌC</h1>
+    <br>
+    <div class="container flex">
+        <div>
+            <label>Chọn lớp</label>
+            <select name="tenlop">
+                <option value="">Lớp</option>
+                {% for c in lop %}
+                <option value="{{ c.tenlop }}">{{ c.tenlop }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input class="an1" type="text" size="8px">
+        <button type="submit">Chọn</button>
+        <input class="an1" type="text" size="8px">
+        <div>
+            <label>Chọn năm học:</label>
+            <select name="namhoc">
+                <option value="">Năm Học</option>
+                {% for c in mangnam1 %}
+                <option value="{{ c}}">{{ c }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input value="" readonly size="10px" class="an1">
+        <button type="submit">Tìm</button>
+    </div>
+    <div>
+        <table class="an">
+            {% for c in students%}
+            <tr>
+                <th><input name="ma_{{c.mahs}}" value="{{c.mahs}}"/></th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <div class="container">
+        <table width="100%">
+            <tr>
+               <th colspan="4" class="tieudetable">BẢNG ĐIỂM MÔN HỌC</th>
+            </tr>
+            <tr align="center">
+                <th>Tên học sinh</th>
+                <th>Lớp</th>
+                <th>Điểm TB HK1</th>
+                <TH>Điểm TB HK2</TH>
+            </tr>
+            {% for c in mangtk %}
+            <tr align="center">
+                {% for d in c %}
+                <th>{{d}}</th>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <div align="center">
+            <br>
+            <button type="submit" class="btn btn-primary"><a href="/bangdiem_nam" style="color: white">Tra Tiếp</a></button>
+            <input type="text" size="8px" class="an1">
+            <button class="btn btn-primary"><a href="/" style="color: white">Thoát</a></button>
+        </div>
+    </div>
+</form>
+{% endblock %}

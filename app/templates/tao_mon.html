@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TẠO MÔN HỌC{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">TẠO MÔN HỌC</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/taomonhoc" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<form method="post" action="/taomonhoc">
+    <div class="mb-3 mt-3">
+        <label for="mon" class="form-label">Tên môn</label>
+        <input type="text" class="form-control" id="mon" name="mon" placeholder="Nhập tên môn...">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="15p" class="form-label">Số bài 15p:</label>
+        <input type="text" class="form-control" id="15p" name="15p" placeholder="Nhập số lượng...">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="45p" class="form-label">Số bài 45p:</label>
+        <input type="text" class="form-control" id="45p" name="45p" placeholder="Nhập số lượng...">
+    </div>
+    <br>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <input type="text" size="8px" class="an1">
+        <button class="btn btn-primary"><a href="/admin" style="color: white">Thoát</a></button>
+    </div>
+</form>
+{% endblock %}

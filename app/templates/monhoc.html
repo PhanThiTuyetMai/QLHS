@@ -1,0 +1,37 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}TẠO MÔN HỌC{% endblock %}
+
+{% block content %}
+<div>
+    <br>
+    <h2 align="center">DANH SÁCH MÔN HỌC</h2>
+    <br>
+    <table align="center">
+        <tr align="center">
+            <th>Tên Môn</th>
+            <th>Số lượng bài 15p</th>
+            <th>Số lượng bài 45p</th>
+        </tr>
+        {% for c in mon %}
+        <tr align="center">
+            <td>{{ c.tenmh }}</td>
+            <td>{{ c.soluongdiem15p }}</td>
+            <td>{{ c.soluongdiem45p }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <div align="center">
+        <button class="btn btn-primary"><a href="/taomonhoc" style="color: white">Tạo thêm môn học</a></button>
+        <input type="text" size="5px" class="an1">
+        <button class="btn btn-primary"><a href="/xoamonhoc" style="color: white">Xóa môn học</a></button>
+        <input type="text" size="5px" class="an1">
+        <button class="btn btn-primary"><a href="/suamonhoc" style="color: white">Cập nhật môn học</a></button>
+        <input type="text" size="5px" class="an1">
+        <button class="btn btn-primary"><a href="/timkiemmon" style="color: white">Tìm kiếm môn học</a></button>
+        <input type="text" size="5px" class="an1">
+        <button class="btn btn-primary"><a href="/admin" style="color: white">Thoát</a></button>
+    </div>
+</div>
+{% endblock %}

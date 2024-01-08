@@ -1,0 +1,116 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}NHẬP ĐIỂM HỌC SINH{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">NHẬP ĐIỂM HỌC SINH</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/nhapdiem" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<br>
+<form method="post" action="/nhapdiem">
+    <div class="container flex" align="center">
+        <div class="container">
+            <label>Chọn lớp: </label>
+            <select name="tenlop">
+                <option>Lớp</option>
+                {% for c in lop %}
+                <option>{{ c.tenlop }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            {% for p in lops %}
+            <input value="{{ p.malop }}" name="ml1" readonly>
+            {% endfor %}
+        </div>
+        <br><br>
+        <div class="container">
+            <label>Chọn học kỳ: </label>
+            <select name="hkn">
+                <option value="">Học Kỳ</option>
+                {% for c in hk1 %}
+                <option value="{{ c }}">{{ c }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            {% for p in manghk %}
+            <input value="{{ p }}" name="hk" readonly>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container flex" align="center">
+        <div class="container">
+            <label>Chọn năm học: </label>
+            <select name="namhoc">
+                <option value="">Năm Học</option>
+                {% for c in hk %}
+                <option>{{ c.namhoc }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="chon_mon" class="container">
+            <label>Chọn môn học: </label>
+            <select name="tenmon">
+                <option value="">Môn Học</option>
+                {% for c in dsmonh %}
+                <option>{{ c.tenmh }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            {% for c in mamon %}
+            <input type="text" value="{{ c.mamh }}" name="ma_m" readonly>
+            {% endfor %}
+        </div>
+    </div>
+    <br><br>
+    <div align="center">
+        <button type="submit">Xác Nhận</button>
+    </div>
+    <br><br>
+    <div>
+        <table border="1" align="center" width="700px;">
+            <tr>
+                <th colspan="11" class="tieudetable">BẢNG ĐIỂM CHI TIẾT</th>
+            </tr>
+            <tr>
+                <th>Mã HS</th>
+                <th>Họ Tên</th>
+                <th colspan="5">Điểm 15p</th>
+                <th colspan="3">Điểm 1 tiết</th>
+                <th>Điểm thi</th>
+            </tr>
+            {% for c in students %}
+            <tr>
+                <th><input name="ma_{{ c.mahs }}" type="text" value="{{ c.mahs }}" size="5" readonly></th>
+                <th><input value="{{ c.hoten }}" type="text" size="10" readonly></th>
+                <th><input name="15_1_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="15_2_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="15_3_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="15_4_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="15_5_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="45_1_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="45_2_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="45_3_{{ c.mahs }}" type="text" size="5"></th>
+                <th><input name="thi_{{ c.mahs }}" type="text" size="5"></th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br><br>
+    <div align="center">
+        <button type="submit">Lưu</button>
+    </div>
+    <br><br>
+</form>
+{% endblock %}

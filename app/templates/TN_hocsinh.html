@@ -1,0 +1,130 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Tiếp nhận học sinh{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">TIẾP NHẬN HỌC SINH</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/tiep_nhan_hs" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<form method="post" action="/tiep_nhan_hs" xmlns="http://www.w3.org/1999/html">
+    <div class="mb-3 mt-3">
+        <label for="username" class="form-label">Họ và tên: </label>
+        <input type="text" class="form-control" id="username" name="hoten" placeholder="Tên học sinh...">
+    </div>
+    <div class="mb-3">
+        <label for="gt" class="form-label">Giới tính:</label>
+        <input type="text" class="form-control" id="gt" name="gioitinh" placeholder="Nhập giới tính...">
+    </div>
+    <div class="mb-3">
+        <label for="dc" class="form-label">Địa chỉ:</label>
+        <input type="text" class="form-control" id="dc" name="diachi" placeholder="Nhập giới tính...">
+    </div>
+    <div class="mb-3">
+        <label for="ns" class="form-label">Ngày sinh:</label>
+        <input type="text" class="form-control" id="ns" name="ngaysinh" placeholder="Nhập ngày sinh...">
+    </div>
+    <div class="mb-3">
+        <label for="sdt" class="form-label">Số điện thoại:</label>
+        <input type="text" class="form-control" id="sdt" name="sdt" placeholder="Nhập số điện thoại...">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Nhập email:</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email...">
+    </div>
+    <div>
+        <br>
+        <div class="flex">
+            <div>
+                <p>Lớp của học sinh: <input type="text" id="tenlop" size="1px" readonly></p>
+            </div>
+            <input type="text" id="ml" name="ml" class="an1" size="1px">
+            <div>
+                <label>Bạn có muốn chọn lớp khác không: </label>
+                <select name="lopkhac">
+                    <option value="">Lớp</option>
+                    {% for c in lop %}
+                    <option value="{{ c.malop }}">{{ c.tenlop }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <script>
+            var n=0;
+            {% for c in hocsinh %}
+                n++;
+            {% endfor %}
+        </script>
+        <script>
+            let malop = [];
+            let siso = [];
+            i = 0, j=0, h=0, s=0, a=0, m=n;
+
+        {% for p in lop %}
+            malop[i] = {{p.malop}};
+            siso[i] = {{p.siso}};
+            i++;
+        {% endfor %}
+
+        if(m>siso[j]){
+            m=m-siso[j];
+            if(m==1){
+                malop.shift();
+            }
+            if(m==0){
+                malop.splice(0,j+1);
+            }
+            if(m>siso[j+1]){
+                do{
+                    if(m>siso[s]){
+                        m = m - siso[s];
+                        if(m>siso[s+1]){
+                            s++;
+                        }
+                    }
+                    h--;
+                }while(h>=0)
+                malop.splice(0,s+1);
+            }
+        }
+        for(i=0 ; i<siso.length ; i++){
+            if(m==siso[i]){
+                a=i;
+                break;
+            }
+        }
+        if(m < siso[j] ){
+                lop = malop[j];
+        }
+        else if(a!=null && a!=siso[j]){
+            malop.splice(0,a+1);
+            lop = malop[j];
+        }
+        else if(a==siso[j]){
+            malop.splice(0,a-1);
+            lop = malop[j];
+        }
+        document.getElementById("ml").value = malop[j];
+        {% for c in lop %}
+            if ({{ c.malop }} == malop[j]){
+                document.getElementById("tenlop").value = "{{ c.tenlop }}"
+            }
+        {% endfor %}
+        </script>
+    </div>
+    <br>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <input type="text" size="8px" class="an1">
+        <button class="btn btn-primary"><a href="/" style="color: white">Thoát</a></button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Sửa Quy Định{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">SỬA QUY ĐỊNH</h1>
+<br>
+<form method="post" action="/suadk" class="container">
+    <div align="center">
+        <table width="100%">
+            {% for c in thamso %}
+            <tr>
+                <th>Tuổi Tối Thiểu</th>
+                <th>Tuổi Tối Đa</th>
+                <th>Sĩ Số</th>
+            </tr>
+            <tr>
+                <td>{{ c.tuoitoithieu }}</td>
+                <td>{{ c.tuoitoida }}</td>
+                <td>{{ c.sisotoida }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <div align="center">
+        <button class="btn btn-primary"><a href="/suatuoi" style="color: white">Sửa Tuổi</a></button>
+        <input type="text" size="8px" class="an1">
+        <button class="btn btn-primary"><a href="/suasiso" style="color: white">Sửa Sĩ Số</a></button>
+        <input type="text" size="8px" class="an1">
+        <button class="btn btn-primary"><a href="/admin" style="color: white">Thoát</a></button>
+    </div>
+</form>
+{% endblock %}

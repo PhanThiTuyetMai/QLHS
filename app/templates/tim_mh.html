@@ -1,0 +1,45 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Tìm Kiếm Môn{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">Tìm Kiếm Môn Học</h1>
+<br>
+<form method="post" action="/timkiemmon">
+    <div class="flex">
+        <label>Vui lòng chọn tên môn học mà bạn muốn tìm:</label>
+        <select name="tenmon">
+            <option>Môn</option>
+            {% for c in mon %}
+            <option>{{ c.tenmh }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" size="2px" class="an1">
+        <button type="submit">Chọn</button>
+    </div>
+    <br><br>
+    <div>
+        {% if found_mh %}
+        <table border="1" align="center" width="700px;">
+            <tr align="center">
+                <th>Tên Môn Học</th>
+                <th>Số lượng bài 15p</th>
+                <th>Số lượng bài 45p</th>
+            </tr>
+            <tr align="center">
+                <td>{{ found_mh.tenmh }}</td>
+                <td>{{ found_mh.soluongdiem15p }}</td>
+                <td>{{ found_mh.soluongdiem45p }}</td>
+            </tr>
+        </table>
+        <br>
+        <div align="center">
+            <button class="btn btn-primary"><a href="/timkiemmon" style="color: white">Tìm tiếp</a></button>
+            <input size="8px" class="an1">
+            <button class="btn btn-primary"><a href="/monhoc" style="color: white">Thoát</a></button>
+        </div>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

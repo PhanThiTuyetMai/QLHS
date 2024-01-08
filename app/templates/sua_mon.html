@@ -1,0 +1,55 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Cập Nhật Môn{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">Cập Nhật Môn Học</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/suamonhoc" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<br>
+<form method="post" action="/suamonhoc">
+    <div class="flex">
+        <label>Vui lòng chọn tên môn học mà bạn muốn cập nhật:</label>
+        <select name="tenmon">
+            <option>Môn</option>
+            {% for c in mon %}
+            <option>{{ c.tenmh }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" size="2px" class="an1">
+        <button type="submit">Chọn</button>
+    </div>
+    <br><br>
+    <div>
+        {% if found_mh %}
+        <table border="1" align="center" width="700px;">
+            <tr align="center">
+                <th>Tên Môn Học</th>
+                <th>Số lượng bài 15p</th>
+                <th>Số lượng bài 45p</th>
+            </tr>
+            <tr align="center">
+                <td><input value="{{ found_mh.tenmh }}" class="inputnhap" name="tenmon_cn" size="8px"></td>
+                <td><input value="{{ found_mh.soluongdiem15p }}" class="inputnhap" name="15p_cn" size="5px"></td>
+                <td><input value="{{ found_mh.soluongdiem45p }}" class="inputnhap" name="45p_cn" size="5px"></td>
+            </tr>
+        </table>
+        <br>
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <input type="text" size="8px" class="an1">
+            <button class="btn btn-primary"><a href="/monhoc" style="color: white">Thoát</a></button>
+        </div>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

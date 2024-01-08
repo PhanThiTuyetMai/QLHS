@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Sửa Quy Định{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">SỬA SĨ SỐ QUY ĐỊNH</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/suasiso" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<br>
+<form method="post" action="/suasiso" class="container">
+    <div>
+        <div class="flex">
+            <label>Nhập sĩ số tối đa 1 lớp:</label>
+            <input type="text" class="an1" size="1px">
+            <input name="siso" type="text" size="75px">
+        </div>
+    </div>
+    <br>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <input type="text" size="8px" class="an1">
+        <button class="btn btn-primary"><a href="/suadk" style="color: white">Thoát</a></button>
+    </div>
+</form>
+{% endblock %}

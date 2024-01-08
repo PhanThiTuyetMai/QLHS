@@ -1,0 +1,58 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Sửa Lớp Học Sinh{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">SỬA LỚP HỌC SINH</h1>
+<br>
+{% if err_msg %}
+<div class="container">
+    <div class="alert alert-info" align="center">
+        <strong>{{ err_msg }}</strong>
+        <input type="text" size="5px" class="an1">
+        <a href="/sualop" class="btn btn-xs btn-primary pull-right">Đã hiểu !</a>
+    </div>
+</div>
+{% endif %}
+<br>
+<form method="post" action="/sualop">
+    <div class="flex">
+        <label>Vui lòng nhập mã học sinh mà bạn muốn sửa lớp:</label>
+        <input type="text" size="1px" class="an1">
+        <input type="text" name="mahs">
+        <input type="text" size="1px" class="an1">
+        <button type="submit">Chọn</button>
+    </div>
+    <br><br>
+    <label>Chú ý: vui lòng nhấn vào lớp rồi sửa lớp !!!!</label>
+    <br><br>
+    <div>
+        {% for c in hs %}
+        <table border="1" align="center" width="700px;">
+            <tr align="center">
+                <th>Mã HS</th>
+                <th>Tên</th>
+                <th>Lớp</th>
+            </tr>
+            <tr align="center">
+                <td><input align="center" value="{{ c.mahs }}" type="text" name="mahs1" class="inputnhap" readonly></td>
+                <td>{{ c.hoten }}</td>
+                {% for d in lop %}
+                {% if c.malop == d.malop %}
+                <td><input align="center" value="{{ d.tenlop }}" size="15px" class="inputnhap" name="lopsua"></td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+        <br><br>
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Sửa tiếp</button>
+            <input type="text" size="8px" class="an1">
+            <button class="btn btn-primary"><a href="/sualop" style="color: white">Thoát</a></button>
+        </div>
+        {% endfor %}
+        <br>
+    </div>
+</form>
+{% endblock %}
