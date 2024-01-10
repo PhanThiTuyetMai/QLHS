@@ -1,5 +1,5 @@
 import hashlib
-from app.models import HocSinh, Khoi, Thamso, User, Lop, MonHoc, HocKy, Diem, Tn
+from app.models import HocSinh, Khoi, Thamso, User, Lop, MonHoc, HocKy, Diem
 from app import db, app
 
 
@@ -59,6 +59,14 @@ def add_khoi(tenkhoi, solop):
 def add_lop(tenlop, makhoi, siso):
     l1 = Lop(tenlop=tenlop, makhoi=makhoi, siso=siso)
     db.session.add(l1)
+    db.session.commit()
+
+
+def add_nam(namhoc=None):
+    s1 = HocKy(tenhk="1", namhoc=namhoc)
+    db.session.add(s1)
+    s2 = HocKy(tenhk="2", namhoc=namhoc)
+    db.session.add(s2)
     db.session.commit()
 
 
@@ -122,12 +130,6 @@ def add_mon(tenmh=None, soluongdiem15p=None, soluongdiem45p=None):
     db.session.commit()
 
 
-def add_thu(giatri=None):
-    d1 = Tn(giatri=giatri)
-    db.session.add(d1)
-    db.session.commit()
-
-
 def add_user(name, username, password, user_role, **kwargs):
     password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
     user = User(name=name.strip(), username=username.strip(),
@@ -148,7 +150,3 @@ def check_login(username, password):
 
 def get_user_by_id(user_id):
     return User.query.get(user_id)
-
-
-
-

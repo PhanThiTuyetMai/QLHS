@@ -29,12 +29,6 @@
         </div>
         <input size="8px" class="an1">
         <div>
-            <button type="submit" class="btn btn-custom" style="font-size: 18px">Chọn</button>
-        </div>
-    </div>
-    <br><br>
-    <div class="container flex">
-        <div>
             <label>Chọn môn học: </label>
             <select name="mh">
                 <option value="">Môn học</option>
@@ -43,18 +37,16 @@
                 {% endfor %}
             </select>
         </div>
-        <input size="8px" class="an1">
+    </div>
+    <br>
+    <div align="center">
         <div>
             <button type="submit" class="btn btn-custom" style="font-size: 18px">Xác nhận</button>
         </div>
     </div>
     <br>
-    <br>
     <div class="container">
         <div align="center">
-            {% for c in ky1 %}
-            <input class="an" align="center" value="{{ c }}" name="ky1" readonly>
-            {% endfor %}
             <div align="center">
                 {% for c in tenhk %}
                 <h2 style="Color: white; background-color: green" align="center">BẢNG TỔNG KẾT HỌC KỲ <input class="inputtieude" align="center" value="{{ c }}" readonly size="1.1" style="Color: white; background-color: green;"></h2>

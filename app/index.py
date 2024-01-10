@@ -109,11 +109,10 @@ def tiepnhan():
         m = int((datetime.datetime.today()).year) - int(ngaysinh[6:10])
         try:
             for c in thamso:
-                if int(m).__ge__(int(c.tuoitoithieu)):
-                    if int(m).__le__(int(c.tuoitoida)):
-                        dao.add_hs(hoten=hoten, gioitinh=gioitinh, email=email,
-                                   diachi=diachi, sdt=sdt, ngaysinh=ngaysinh, malop=malop)
-                        err_msg = "Đã thêm thành công"
+                if int(m).__ge__(int(c.tuoitoithieu)) and int(m).__le__(int(c.tuoitoida)):
+                    dao.add_hs(hoten=hoten, gioitinh=gioitinh, email=email,
+                               diachi=diachi, sdt=sdt, ngaysinh=ngaysinh, malop=malop)
+                    err_msg = "Đã thêm thành công"
                 else:
                     err_msg = "Vui Lòng Xem Lại Tuổi Học Sinh !!!"
         except Exception as ex:
@@ -138,21 +137,19 @@ def dslop():
 @app.route('/nhapdiem', methods=['get', 'post'])
 def nhapdiem():
     err_msg = ''
+    global mn, mahs, ml, ky1
     manghk = []
     mangnam = []
     hk1 = []
-    global mn, mahs, ml, ky1
+    dsmonh = dao.load_mh()
     lop = dao.load_lop()
-
     hk = dao.load_hk()
     for c in hk:
         mangnam.append(c.namhoc)
         if int(c.mahk) <= 2:
             hk1.append(c.mahk)
-
     mangnam = set(mangnam)
 
-    dsmonh = dao.load_mh()
     kw = request.form.get('tenlop')
     lops = dao.load_lop_tenlop(kw)
 
@@ -161,14 +158,14 @@ def nhapdiem():
 
     tenmon = request.form.get('tenmon')
     namhoc = request.form.get('namhoc')
-
     hkn = request.form.get('hkn')
     hks = dao.load_mahk(hkn)
+
     for c in hks:
         if str(c.namhoc).__eq__(str(namhoc)):
             manghk.append(c.mahk)
 
-    mamon = dao.load_mamh(tenmon)
+    mon = dao.load_mamh(tenmon)
     mm = request.form.get('ma_m')
     ky = request.form.get('hk')
 
@@ -198,15 +195,13 @@ def nhapdiem():
 
             dthi = request.form.get(str('thi_' + str(i + 1)))
 
-            dao.add_thu(i)
-
             if d15_1 == '' and d15_2 == '' and d15_3 == '' and d15_4 == '' and d15_5 == '' and d45_1 == '' and d45_2 == '' and d45_3 == '' and dthi == '':
                 pass
             else:
                 mang.append([d15_1, d15_2, d15_3, d15_4, d15_5, d45_1, d45_2, d45_3, dthi])
                 manghs.append(ma_hs)
 
-        if mm is not None and ml1 is not None and ky is not None:
+        if mm and ml1 and ky:
             mangm.append(mm)
             mangm.append(ml1)
             mangm.append(ky)
@@ -239,7 +234,7 @@ def nhapdiem():
 
     return render_template('Nhap_diem.html', lop=lop, hk=hk, dsmonh=dsmonh,
                            UserRole=UserRole, err_msg=err_msg, lops=lops, manghk=manghk,
-                           mamon=mamon, students=students, hk1=hk1, mangnam=mangnam)
+                           mon=mon, students=students, hk1=hk1, mangnam=mangnam)
 
 
 @app.route('/taomonhoc', methods=['get', 'post'])
@@ -328,78 +323,9 @@ def timmon():
     return render_template('tim_mh.html', UserRole=UserRole, found_mh=found_mh, mon=mon)
 
 
-@app.route('/bangdiem_mon', methods=['get', 'post'])
-# bổ sung thêm năm học vào đây
-def bangdiem_mon():
-    a = 0
-    lop = dao.load_lop()
-    mon1 = dao.load_mh()
-    tenlop = request.form.get('tenlop')
-    tenmon = request.form.get('tenmon')
-    lop1 = dao.load_lop_tenlop(tenlop)
-    for c in lop1:
-        a = c.malop
-    students = dao.load_hs_lop(a)
-    mon = dao.load_mamh(tenmon)
-    mangtk = []
-    manghs = []
-    dem15 = 0
-    dem45 = 0
-
-    for i in range(0, dao.count_hocsinh()):
-        ma_hs = request.form.get(str('ma_') + str(i + 1))
-        if ma_hs is not None:
-            manghs.append(ma_hs)
-
-    for c in mon:
-        dem15 = c.soluongdiem15p
-        dem45 = c.soluongdiem45p
-
-    for c in range(0, len(manghs)):
-        diem1 = dao.load_mahs_diem(manghs[c])
-        if manghs[c] is not None:
-            tong15_1 = 0
-            tong45_1 = 0
-            thi_1 = 0
-            tong15_2 = 0
-            tong45_2 = 0
-            thi_2 = 0
-            for d in mon:
-                for f in diem1:
-                    if f.mamh == d.mamh:
-                        if f.mahk == 1:
-                            if f.maloai == 1:
-                                tong15_1 = tong15_1 + f.diem
-                            if f.maloai == 2:
-                                tong45_1 = tong45_1 + f.diem
-                            if f.maloai == 3:
-                                thi_1 = f.diem
-                        if f.mahk == 2:
-                            if f.maloai == 1:
-                                tong15_2 = tong15_2 + f.diem
-                            if f.maloai == 2:
-                                tong45_2 = tong45_2 + f.diem
-                            if f.maloai == 3:
-                                thi_2 = f.diem
-
-            hs = dao.load_hs_mahs(manghs[c])
-            for a in hs:
-                l = dao.load_lop_malop(a.malop)
-                for c in l:
-                    if tong15_1 >= 0 and tong45_1 >= 0 and thi_1 >= 0 and tong15_2 >= 0 and tong45_2 >= 0 and thi_2 >= 0:
-                        diemtb_1 = (tong15_1 + tong45_1 * 2 + thi_1 * 3) / (dem15 + dem45 * 2 + 3)
-                        diemtb_2 = (tong15_2 + tong45_2 * 2 + thi_2 * 3) / (dem15 + dem45 * 2 + 3)
-                        if diemtb_1 >= 0:
-                            if diemtb_2 >= 0:
-                                mangtk.append([a.hoten, c.tenlop, round(diemtb_1, 2), round(diemtb_2, 2)])
-
-    return render_template('bangdiem.html', lop=lop, students=students, mangtk=mangtk, mon1=mon1, mon=mon,
-                           UserRole=UserRole)
-
-
 @app.route('/tongket', methods=['get', 'post'])
 def tongket():
-    global diemtb_1, dem
+    global diemtb_1, dem, mahk
     hk = []
     mangnam = []
     hocky = dao.load_hk()
@@ -419,18 +345,15 @@ def tongket():
     namhoc = request.form.get('namhoc')
     tenm = request.form.get('mh')
     mon1 = dao.load_mamh(tenm)
-    ky1 = []
     tenhk = []
     tennh = []
     mangky = dao.load_namhoc_hk(namhoc)
 
     for c in mangky:
         if int(c.tenhk) == int(ky):
-            ky1.append(c.mahk)
+            mahk = c.mahk
             tenhk.append(c.tenhk)
             tennh.append(c.namhoc)
-
-    hk1 = request.form.get('ky1')
 
     mangtenlop = []
     mangtile = []
@@ -455,11 +378,10 @@ def tongket():
             tong45_2 = 0
             thi_2 = 0
             diem1 = dao.load_mahs_diem(d.mahs)
-            dao.add_thu(hk1)
             for e in mon1:
                 for f in diem1:
                     if f.mamh == e.mamh:
-                        if str(f.mahk) == hk1:
+                        if int(f.mahk) == int(mahk):
                             if f.maloai == 1:
                                 tong15_1 = tong15_1 + f.diem
                             if f.maloai == 2:
@@ -479,7 +401,7 @@ def tongket():
             mangtk.append([c.tenlop, siso, dem, round((dem / siso) * 100, 2)])
 
     return render_template('tk_mh.html', hk=hk, lop=lop, m=m, UserRole=UserRole, mangnam1=mangnam1,
-                           ky1=ky1, mangtk=mangtk, mangtenlop=mangtenlop,
+                           mangtk=mangtk, mangtenlop=mangtenlop,
                            mangtile=mangtile, mon1=mon1, tenhk=tenhk, tennh=tennh)
 
 
@@ -558,7 +480,6 @@ def sua_lop():
         try:
             for c in lop:
                 if str(c.tenlop).__eq__(str(lopsua)):
-                    dao.add_thu(c.malop)
                     found_hs.malop = int(c.malop)
                     db.session.commit()
                     err_msg = 'Đã sửa lớp thành công'
@@ -613,7 +534,6 @@ def sua_siso():
 def bangdiem_nam():
     a = 0
     mangnam = []
-    manghs = []
     mangtk = []
 
     lop = dao.load_lop()
@@ -636,62 +556,77 @@ def bangdiem_nam():
 
     manghk = dao.load_namhoc_hk(namhoc)
 
-    for i in range(0, dao.count_hocsinh()):
-        ma_hs = request.form.get(str('ma_') + str(i + 1))
-        if ma_hs is not None:
-            manghs.append(ma_hs)
+    for c in students:
+        diem1 = dao.load_mahs_diem(c.mahs)
+        tong_2 = 0
+        tong_1 = 0
+        for d in mon:
+            tong15_1 = 0
+            tong45_1 = 0
+            thi_1 = 0
+            tong15_2 = 0
+            tong45_2 = 0
+            thi_2 = 0
+            for h in manghk:
+                for f in diem1:
+                    if f.mamh == d.mamh:
+                        if f.mahk == h.mahk and int(h.tenhk) == 1:
+                            if f.maloai == 1:
+                                tong15_1 = tong15_1 + f.diem
+                            if f.maloai == 2:
+                                tong45_1 = tong45_1 + f.diem
+                            if f.maloai == 3:
+                                thi_1 = f.diem
 
-    for c in range(0, len(manghs)):
-        diem1 = dao.load_mahs_diem(manghs[c])
-        if manghs[c] is not None:
-            tong_2 = 0
-            tong_1 = 0
-            for d in mon:
-                tong15_1 = 0
-                tong45_1 = 0
-                thi_1 = 0
-                tong15_2 = 0
-                tong45_2 = 0
-                thi_2 = 0
-                for h in manghk:
-                    for f in diem1:
-                        if f.mamh == d.mamh:
-                            if f.mahk == h.mahk and int(h.tenhk) == 1:
-                                if f.maloai == 1:
-                                    tong15_1 = tong15_1 + f.diem
-                                if f.maloai == 2:
-                                    tong45_1 = tong45_1 + f.diem
-                                if f.maloai == 3:
-                                    thi_1 = f.diem
+                        if f.mahk == h.mahk and int(h.tenhk) == 2:
+                            if f.maloai == 1:
+                                tong15_2 = tong15_2 + f.diem
+                            if f.maloai == 2:
+                                tong45_2 = tong45_2 + f.diem
+                            if f.maloai == 3:
+                                thi_2 = f.diem
 
-                            if f.mahk == h.mahk and int(h.tenhk) == 2:
-                                if f.maloai == 1:
-                                    tong15_2 = tong15_2 + f.diem
-                                if f.maloai == 2:
-                                    tong45_2 = tong45_2 + f.diem
-                                if f.maloai == 3:
-                                    thi_2 = f.diem
+            tong_1 = tong_1 + (
+                    (tong15_1 + tong45_1 * 2 + thi_1 * 3)
+                    / (int(d.soluongdiem15p) + int(d.soluongdiem45p) * 2 + 3))
 
-                tong_1 = tong_1 + (
-                        (tong15_1 + tong45_1 * 2 + thi_1 * 3)
-                        / (int(d.soluongdiem15p) + int(d.soluongdiem45p) * 2 + 3))
+            tong_2 = tong_2 + (
+                    (tong15_2 + tong45_2 * 2 + thi_2 * 3)
+                    / (int(d.soluongdiem15p) + int(d.soluongdiem45p) * 2 + 3))
 
-                tong_2 = tong_2 + (
-                        (tong15_2 + tong45_2 * 2 + thi_2 * 3)
-                        / (int(d.soluongdiem15p) + int(d.soluongdiem45p) * 2 + 3))
+        hs = dao.load_hs_mahs(c.mahs)
+        for a in hs:
+            l = dao.load_lop_malop(a.malop)
+            for c in l:
+                mangtk.append([a.hoten, c.tenlop, round(tong_1 / int(dao.count_monhoc()), 2),
+                               round(tong_2 / int(dao.count_monhoc()), 2)])
 
-            hs = dao.load_hs_mahs(manghs[c])
-            for a in hs:
-                l = dao.load_lop_malop(a.malop)
-                for c in l:
-                    mangtk.append([a.hoten, c.tenlop, round(tong_1 / int(dao.count_monhoc()), 2),
-                                   round(tong_2 / int(dao.count_monhoc()), 2)])
-
-    return render_template('bangdiem_nam.html', lop=lop, students=students, hk=hk, mon=mon,
+    return render_template('bangdiem_nam.html', lop=lop, hk=hk, mon=mon,
                            UserRole=UserRole, mangtk=mangtk, mangnam1=mangnam1)
+
+
+@app.route('/namhoc', methods=['get', 'post'])
+def add_namhoc():
+    err_msg = ''
+    hocky = dao.load_hk()
+    n = 0
+    if request.method.__eq__('POST'):
+        namhoc = request.form.get('namhoc')
+        if namhoc:
+            try:
+                for c in hocky:
+                    if str(c.namhoc).__eq__(str(namhoc)):
+                        err_msg = "Đã tồn tại năm học này!!"
+                        n = n + 1
+                if n == 0:
+                    dao.add_nam(namhoc)
+                    err_msg = "Đã thêm năm học thành công"
+            except Exception as ex:
+                err_msg = 'Hệ thống đang có lỗi ' + str(ex)
+
+    return render_template('hocky.html', err_msg=err_msg , UserRole=UserRole)
 
 
 if __name__ == '__main__':
     from app import admin
-
     app.run(debug=True)

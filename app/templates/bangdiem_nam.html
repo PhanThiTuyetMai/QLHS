@@ -18,8 +18,6 @@
             </select>
         </div>
         <input class="an1" type="text" size="8px">
-        <button type="submit" class="btn btn-custom" style="font-size: 18px">Chọn</button>
-        <input class="an1" type="text" size="8px">
         <div>
             <label>Chọn năm học:</label>
             <select name="namhoc">
@@ -31,15 +29,6 @@
         </div>
         <input value="" readonly size="10px" class="an1">
         <button type="submit" class="btn btn-custom" style="font-size: 18px">Tìm</button>
-    </div>
-    <div>
-        <table class="an">
-            {% for c in students%}
-            <tr>
-                <th><input name="ma_{{c.mahs}}" value="{{c.mahs}}"/></th>
-            </tr>
-            {% endfor %}
-        </table>
     </div>
     <br>
     <div class="container">

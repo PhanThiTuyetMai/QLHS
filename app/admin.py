@@ -38,6 +38,12 @@ class QuyDinhView(BaseView):
         return redirect("/suadk")
 
 
+class NamHoc(BaseView):
+    @expose("/")
+    def index(self):
+        return redirect("/namhoc")
+
+
 class DangXuat(BaseView):
     @expose("/")
     def index(self):
@@ -47,4 +53,5 @@ class DangXuat(BaseView):
 admin.add_view(MonHocView(name='Môn Học'))
 admin.add_view(QuyDinhView(name='Quy Định'))
 admin.add_view(StatsView(name='Thống Kê'))
+admin.add_view(NamHoc(name='Năm Học'))
 admin.add_view(DangXuat(name='Đăng Xuất'))

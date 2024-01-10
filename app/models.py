@@ -101,11 +101,6 @@ class Diem(db.Model):
     mahk = Column(Integer, ForeignKey(HocKy.mahk), nullable=False)
 
 
-class Tn(db.Model):
-    ma = Column(Integer, primary_key=True, autoincrement=True)
-    giatri = Column(Float)
-
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
